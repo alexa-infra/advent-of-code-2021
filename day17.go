@@ -72,6 +72,6 @@ func main() {
 			}
 		}
 	}
-	fmt.Println(my)
-	fmt.Println(cc)
+	fmt.Println("Part 1:", my)
+	fmt.Println("Part 2:", cc)
 }
