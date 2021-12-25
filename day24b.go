@@ -5,8 +5,8 @@ import (
 	"sort"
 )
 
-var xa []int = []int{ 11, 12, 13, -5, -3, 14, 15, -16, 14, 15, -7, -11, -6, -11 }
-var xb []int = []int{ 16, 11, 12, 12, 12,  2, 11,   4, 12,  9, 10,  11,  6,  15 }
+var xa []int = []int{11, 12, 13, -5, -3, 14, 15, -16, 14, 15, -7, -11, -6, -11}
+var xb []int = []int{16, 11, 12, 12, 12, 2, 11, 4, 12, 9, 10, 11, 6, 15}
 
 func myFunc(inp []int) (z int) {
 	// decompiled op-code program from the output of day24a
@@ -22,20 +22,20 @@ func myFuncStep(i, w, z int) int {
 	a := xa[i]
 	b := xb[i]
 	if a > 0 {
-		return z * 26 + w + b
+		return z*26 + w + b
 	}
 	zd := z % 26
 	z = z / 26
-	if zd != w - a {
-		return z * 26 + w + b
+	if zd != w-a {
+		return z*26 + w + b
 	}
 	return z
 }
 
 func main() {
-	zPrev := map[int]int{ 0: 1 }
+	zPrev := map[int]int{0: 1}
 	steps := [][]int{
-		[]int{ 0 },
+		[]int{0},
 	}
 	zLimit := 26 * 26 * 26 * 26
 	for i := 0; i < 14; i++ {
@@ -72,12 +72,12 @@ func main() {
 		fmt.Println("z=0 not found, need more zLimit!")
 		return
 	}
-	steps[14] = []int{ 0 }
+	steps[14] = []int{0}
 	type pair struct {
 		x, y int
 	}
 	revSteps := [][]int{}
-	revPrev := map[pair]int{ pair{ 0, 0, }: 0, }
+	revPrev := map[pair]int{pair{0, 0}: 0}
 	for i := 14; i >= 1; i-- {
 		// now we rebuild which (w, z)-pairs have led to the valid
 		// condition, so we use cached z-values from the previous step
@@ -88,7 +88,7 @@ func main() {
 				zz := myFuncStep(i-1, w, z)
 				for p := range revPrev {
 					if p.x == zz {
-						pp := pair{ z, w }
+						pp := pair{z, w}
 						revNext[pp] = 1
 						break
 					}
@@ -143,7 +143,7 @@ func main() {
 				break
 			}
 			res[13-pos] = w
-			req(pos+1)
+			req(pos + 1)
 		}
 	}
 	req(0)
